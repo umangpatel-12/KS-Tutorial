@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ks-frontend
+spec:
+  selector:
+    matchLabels:
+      app: ks-frontend
+  template:
+    metadata:
+      labels:
+        app: ks-frontend
+    spec:
+      containers:
+        - name: frontend
+          image: docker.io/730031/ks-frontend
+          ports:
+            - containerPort: 9000
+          env:
+            - name: BACKEND_URL
+              value: http://ks-backend.ks-tutorial.svc.cluster.local
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ks-frontend
+spec:
+  selector:
+    app: ks-frontend
+  type: NodePort   # Add this line
+  ports:
+    - protocol: TCP
+      port: 80       # Keep this as 80 (external port)
+      targetPort: 9000
+      nodePort: 30007 # Optional: Define a specific node port (default range: 30000-32767)
+

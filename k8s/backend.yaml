@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ks-backend
+spec:
+  selector:
+    matchLabels:
+      app: ks-backend
+  template:
+    metadata:
+      labels:
+        app: ks-backend
+    spec:
+      containers:
+        - name: ks-backend
+          image: docker.io/730031/ks-backend:latest
+          ports:
+            - containerPort: 8000
+          env:
+            - name: MONGI_HOST
+              value: mongo.ks-tutorial.svs.cluster.local
+---
+apiVersion:  v1
+kind: Service
+metadata:
+  name: ks-backend
+spec:
+  selector:
+    app: ks-backend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000

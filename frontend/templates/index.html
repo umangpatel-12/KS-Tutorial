@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+    <h4>Hy This Is K8S</h4>
+
+    {% for name in data %}
+    
+        <p> {{ name }} </p>
+
+    {% endfor %}
+
+    {% for key, value in env.items() %}
+    
+        <p>{{key}}:{{value}}</p>
+
+    {% endfor %}
+
+</body>
+<style>
+    body{
+        background-color: brown;
+        color: antiquewhite;    
+    }
+</style>
+</html>
