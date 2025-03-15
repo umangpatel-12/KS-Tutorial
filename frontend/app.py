@@ -20,7 +20,7 @@ def index():
     
     env = dict(os.environ)
     
-    return render_template('index.html', env = env,data=data)
+    return render_template('index.html', env = env, data = data['data'])
 
 if __name__ == '__main__':
     app.run(debug=True, port=PORT,host='0.0.0.0')

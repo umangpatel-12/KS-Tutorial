@@ -28,7 +28,9 @@ def api():
 
 @app.route('/api/add/<name>')
 def add(name):
+    
     coll.insert_one({'value':name})
+    
     return jsonify({'message':'Added '+name})
 
 if __name__ == '__main__':
